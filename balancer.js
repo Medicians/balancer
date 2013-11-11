@@ -12,13 +12,26 @@ var httpProxy = require('http-proxy');
 * 2XXX => Custom instances
 *
 */
+
+var path = require('path'),
+    fs = require('fs'),
+    folders = fs.readdirSync('/home/ubuntu/medicians/');
+
+// Leer carpeta medicians cada instance.json y crear el objeto router
+var router = {
+	'medicians.org': 'localhost:3000',
+    'www.medicians.org': 'localhost:3000'
+};
+
+// Leer carpeta solo primer nivel y añadir [carpeta]/instance.json
+// router[instance.username + '.medicians.org'] = 'localhost:' + instance.port;
+
+folders.forEach(function(folder) {
+    var instance = JSON.parse(fs.readFileSync('/home/ubuntu/medicians/' + folder + '/instance.json'));
+
+	router[instance.username + '.medicians.org'] = 'localhost:' + instance.port;    
+});
+
 httpProxy.createServer({
-  router: {
-    'medicians.org': 'localhost:3000',
-    'www.medicians.org': 'localhost:3000',
-
-    //'notifications.medicians.org': 'localhost:1001',
-
-    'demo.medicians.org': 'localhost:3010'
-  }
+  router: router
 }).listen(80); // Run with sudo
