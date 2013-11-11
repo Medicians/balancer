@@ -22,7 +22,7 @@ var router = {
 	'medicians.org': 'localhost:3000',
     'www.medicians.org': 'localhost:3000',
 
-    'notifications.medicians.org' : 'localhost:7001'
+    'notifications.medicians.org' : 'localhost:3001'
 };
 
 // Leer carpeta solo primer nivel y añadir [carpeta]/instance.json
