@@ -20,7 +20,9 @@ var path = require('path'),
 // Leer carpeta medicians cada instance.json y crear el objeto router
 var router = {
 	'medicians.org': 'localhost:3000',
-    'www.medicians.org': 'localhost:3000'
+    'www.medicians.org': 'localhost:3000',
+
+    'notifications.medicians.org' : 'localhost:7001'
 };
 
 // Leer carpeta solo primer nivel y añadir [carpeta]/instance.json
